@@ -1,17 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import AppExample from './examples/AppExample';
 
+import './services/firebase';
+
+//vai pegar todos os componentes que estiverem dentro do React.StrictMode e vai injetar na div com id root
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
+  //Aqui sera onde vai colocar todos os componentes(telas) que forem criadas
+  <React.StrictMode>    
+    <AppExample />
   </React.StrictMode>,
+  //esse e como o REACT vai encontrar aquele Id e injetar dentro dele
   document.getElementById('root')
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
