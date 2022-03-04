@@ -1,0 +1,50 @@
+.NewRoom {
+  display: flex;
+  align-items: stretch;
+  height: 100vh;
+}
+
+main {
+  flex: 11;
+
+  padding: 0 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.MainContent {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 500px;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+}
+
+.MainContent > strong {
+  font-size: 3.5vh;
+  font-weight: 750;
+  align-self: center;
+  margin: 64px 0 24px;
+  font-family: "Poppins", sans-serif;
+  color: #4b4a4a;
+}
+
+.MainContent > small{
+     margin-top:2% ;
+     align-self: center;
+     font-size: 1.7vh;
+     color: #727272;
+}
+
+.MainContent > small > a{
+     color: #f065d2;
+}
+
+.MainContent > small > a:hover{
+     color: #f065d280;
+     cursor: pointer;
+}
