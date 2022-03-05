@@ -4,7 +4,7 @@ import { NewRoom } from "./pages/NewRoom";
 function App() {
   return (
     <div>
-      <NewRoom />
+      <Home />
     </div>
   );
 }
