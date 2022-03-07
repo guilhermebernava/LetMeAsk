@@ -1,10 +1,14 @@
 import { Form } from "../components/Form/Form";
 import { Illustration } from "../components/Illustration/Illustration";
 import { LetMeAskLogo } from "../components/LetMeAskLogo/LetMeAskLogo";
-
+import { useAuth } from "../hooks/useAuth";
+ 
 import "../styles/NewRoom.css";
 
 export function NewRoom() {
+
+  const { user } = useAuth()
+
   return (
     <div className="NewRoom">
       <Illustration />
