@@ -1,17 +1,13 @@
-import { Button } from "../Button/Button";
 import "./Form.css";
+import {FormHTMLAttributes} from 'react';
 
-interface FormProps{
-     type:string;
-     placeholder: string;
-     buttonName: string;
+interface formProps extends FormHTMLAttributes<HTMLFormElement>{
 }
 
-export function Form(props: FormProps) {
+export function Form(props: formProps) {
   return (
-    <form className="formulario">
-      <input type={props.type} placeholder={props.placeholder} />
-      <Button type="submit">{props.buttonName}</Button>
+    <form className="formulario" {...props}>
+      {props.children}
     </form>
   );
 }

@@ -1,5 +1,4 @@
 import googleLogo from "../assets/images/google-icon.svg";
-
 import "../styles/Home.css";
 import { Button } from "../components/Button/Button";
 import { Illustration } from "../components/Illustration/Illustration";
@@ -7,20 +6,37 @@ import { LetMeAskLogo } from "../components/LetMeAskLogo/LetMeAskLogo";
 import { Form } from "../components/Form/Form";
 import { useHistory } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
- 
-const Home = () => {
+import { database } from "../services/firebase";
+import { FormEvent, useState } from "react";
 
+const Home = () => {
   const history = useHistory();
-  const { user, signInWithGoogle } = useAuth()
+  const { user, signInWithGoogle } = useAuth();
+  const [roomCode, setRoomCode] = useState("");
 
   async function handleCreateRoom() {
     if (!user) {
-      await signInWithGoogle()
+      await signInWithGoogle();
     }
 
-    history.push('/rooms/new');
+    history.push("/rooms/new");
   }
-  
+
+  async function handleEnterRoom(event: FormEvent) {
+    event.preventDefault();
+
+    if(roomCode.trim() === '')
+        return
+    
+    const roomRef = await database.ref(`rooms/${roomCode}`).get();
+
+    if(!roomRef.exists()){
+      alert('ROOM DOES NOT EXIST!!!')
+      return
+    }
+    history.push(`/rooms/${roomCode}`);
+  }
+
   return (
     <div className="HomePage">
       <Illustration />
@@ -32,11 +48,15 @@ const Home = () => {
             Crie sua sala com o Google
           </Button>
           <div className="separator">ou entre em uma sala</div>
-          <Form
-            placeholder="Digite o código da sala"
-            type="text"
-            buttonName="Entrar na Sala"
-          />
+          <Form onSubmit={handleEnterRoom}>
+            <input
+              type="text"
+              placeholder="Insira o codigo da Sala"
+              onChange={(e) => setRoomCode(e.target.value)}
+              value={roomCode}
+            />
+            <Button>Entrar na Sala</Button>
+          </Form>
         </div>
       </main>
     </div>
