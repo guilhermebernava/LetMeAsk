@@ -15,7 +15,7 @@ import { Question } from "../components/Question/Question";
 import { QuestionType, RoomParams, FirebaseQuestions } from "../types/QuestionTypes";
 
 
-export function Room() {
+export function AdminRoom() {
   const { user } = useAuth();
   const params = useParams<RoomParams>();
   const [questions, setQuestions] = useState<QuestionType[]>([]);
