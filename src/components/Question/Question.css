@@ -1,0 +1,47 @@
+.question-div{
+  padding: 1em;
+  width: 60em;
+  margin-bottom: 0.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  background: #FEFEFE;
+  border: 2px solid #73738008;
+  border-radius: 15px;
+  overflow-y: auto;
+}
+
+.question-img-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin-bottom: 1%;
+}
+
+.question-div > p {
+  margin-top: 0.5em;
+  width: 90%;
+  text-align: left;
+  text-justify: inter-cluster;
+  font: 400 20px "Poppins", sans-serif;
+  margin-bottom: 2em;
+
+}
+
+.question-img-div > img {
+  width: 45px;
+  border-radius: 9999px;
+  
+}
+
+.question-img-div > span{
+  white-space: nowrap;
+  align-self: center;
+  width: max-content;
+  font: 400 14px "Poppins", sans-serif;
+  color: #737380;
+  font-weight: 500;
+  padding-right: 40em;
+}
