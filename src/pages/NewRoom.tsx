@@ -39,7 +39,7 @@ export function NewRoom() {
       <Illustration />
       <main>
         <div className="MainContent">
-          <LetMeAskLogo margin="0px 0px" />
+          <LetMeAskLogo />
           <strong>Crie uma nova Sala</strong>
           <Form onSubmit={handleCreateRoom}>
             <input

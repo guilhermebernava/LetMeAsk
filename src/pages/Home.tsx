@@ -42,8 +42,8 @@ const Home = () => {
       <Illustration />
       <main>
         <div className="MainContent">
-          <LetMeAskLogo margin="64px 0px" />
-          <Button onClick={handleCreateRoom} color="#DB4437">
+          <LetMeAskLogo style={{margin: '10% 0%'}}/>
+          <Button onClick={handleCreateRoom} style={{background:"#DB4437"}}>
             <img src={googleLogo} alt="googleLogo" />
             Crie sua sala com o Google
           </Button>

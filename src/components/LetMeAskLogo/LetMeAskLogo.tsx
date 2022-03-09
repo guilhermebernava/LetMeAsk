@@ -1,13 +1,12 @@
 import './LetMeAskLogo.css';
 import letmeaskLogo from '../../assets/images/logo.svg'
+import {ImgHTMLAttributes} from 'react';
 
-
-interface LogoProps{
-     margin:string;
+interface LogoProps extends ImgHTMLAttributes<HTMLImageElement>{
 }
 
 export function LetMeAskLogo(props: LogoProps){
      return(
-          <img className="letMeaskLogo" src={letmeaskLogo} alt="LetMeAsk Logo" style={{margin: props.margin}} />
+          <img className="letMeaskLogo" src={letmeaskLogo} alt="LetMeAsk Logo" {...props} />
      );
 }

@@ -1,0 +1,27 @@
+.EncerrarButton {
+  margin: 0 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  color: #835afd;
+  border: solid 1px #835afd;
+  font-weight: 500;
+  font-size: 1em;
+  width: 10em;
+  height: 2.5em;
+}
+
+.EncerrarButton:hover{
+  filter: brightness(0.9);
+  
+}
+
+.EncerrarButton:disabled{
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.EncerrarButton:active{
+  filter: brightness(0.7);
+}
