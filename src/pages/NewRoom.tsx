@@ -53,7 +53,7 @@ export function NewRoom() {
           <small>
             {" "}
             Quer entrar em uma sala já existente?{" "}
-            <a href="teste">Clique aqui</a>
+            <a href="/">Clique aqui</a>
           </small>
         </div>
       </main>
