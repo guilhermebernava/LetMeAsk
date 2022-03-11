@@ -18,8 +18,9 @@ export function Room() {
   const { user } = useAuth();
   const params = useParams<RoomParams>();
   const [question, setQuestion] = useState("");
+  const [send,setSend] = useState(false);
+  const { questions, title , pergunta} = useRoom(params.id,send);
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   async function handleCreateQuestion(e: FormEvent) {
     e.preventDefault();
 
@@ -40,12 +41,10 @@ export function Room() {
       isHighlighted: false,
       isAnswered: false,
     };
-
+    setSend(!send);
     await database.ref(`rooms/${params.id}/questions`).push(newQuestion);
     setQuestion("");
   }
-
-  const { questions, title } = useRoom(params.id);
 
   async function handleLikeQuestion(
     questionId: string,
@@ -53,10 +52,12 @@ export function Room() {
   ) {
     console.log(likeId);
     if (likeId) {
+      setSend(true);
       await database
         .ref(`rooms/${params.id}/questions/${questionId}/likes/${likeId}`)
         .remove();
     } else {
+      setSend(false);
       await database
         .ref(`rooms/${params.id}/questions/${questionId}/likes`)
         .push({
@@ -76,7 +77,7 @@ export function Room() {
       <main className="main-room">
         <div className="title-div">
           <h1>Sala {title}</h1>
-          {questions.length > 0 && <span>{questions.length} pergunta(s)</span>}
+          {questions.length > 0 && <span>{pergunta} pergunta(s)</span>}
         </div>
         <form onSubmit={handleCreateQuestion}>
           <textarea
@@ -109,6 +110,7 @@ export function Room() {
           // e vai passar via DESTRUCTING como PROPS, ou seja E é cada ITEM da LISTA
           // para cada ITEM do map vai ser um COMPONENTE NOVO
           questions.map((e) => (
+            !e.isAnswered  &&
             <Question key={e.id} {...e}>
               <div className="button-room">
                 <span>{e.likeCount}</span>

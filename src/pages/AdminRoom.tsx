@@ -10,29 +10,69 @@ import { RoomParams } from "../types/QuestionTypes";
 import { useRoom } from "../hooks/useRoom";
 import { EncerrarButton } from "../components/EncerrarButton/EncerrarButton";
 import { database } from "../services/firebase";
+import { useState } from "react";
 
 export function AdminRoom() {
   const history = useHistory();
   const params = useParams<RoomParams>();
+  const [send,setSend] = useState(false);
 
-  const { questions, title } = useRoom(params.id);
+  const { questions, title , pergunta} = useRoom(params.id,send);
+
+  //#region FUNCTIONS
+  async function handleAnswredQuestion(questionId:string , active: boolean) {
+    if(!active){
+    setSend(!send);
+
+      await database.ref(`rooms/${params.id}/questions/${questionId}`).update({
+        isAnswered: true
+
+      });
+    } else{
+    setSend(!send);
+
+      await database.ref(`rooms/${params.id}/questions/${questionId}`).update({
+        isAnswered: false
+      });
+    }
+  }
+
+  async function handleFocus(questionId : string, active: boolean) {
+    if(!active){
+    setSend(!send);
+
+      await database.ref(`rooms/${params.id}/questions/${questionId}`).update({
+        isHighlighted: true
+      });
+    } else{
+    setSend(!send);
+
+      await database.ref(`rooms/${params.id}/questions/${questionId}`).update({
+        isHighlighted: false
+      });
+    }
+  }
 
   async function handleEndRoom() {
-    if(window.confirm("Voce deseja mesmo ENCERRAR ESSA SALA ?")){
+    if(window.confirm("Voce deseja mesmo ENCERRAR ESSA SALA  ?")){
+    setSend(!send);
+
       await database.ref(`rooms/${params.id}`).update({
         endedAt: Date.now()
       });
 
       history.push('/');
     } 
-    
   }
 
   async function handleDelete(questionId : string ) {
     if(window.confirm("Voce deseja mesmo excluir essa pergunta ?")){
+    setSend(!send);
+
       await database.ref(`rooms/${params.id}/questions/${questionId}`).remove();
     }
   }
+  //#endregion
 
   return (
     <div className="room-main-div">
@@ -46,7 +86,7 @@ export function AdminRoom() {
       <main className="main-room">
         <div className="title-div">
           <h1>Sala {title}</h1>
-          {questions.length > 0 && <span>{questions.length} pergunta(s)</span>}
+          {questions.length > 0 && <span>{pergunta} pergunta(s)</span>}
         </div>
         {questions.length === 0 ? (
           <NenhumaPergunta />
@@ -55,9 +95,11 @@ export function AdminRoom() {
           // e vai passar via DESTRUCTING como PROPS, ou seja E é cada ITEM da LISTA
           // para cada ITEM do map vai ser um COMPONENTE NOVO
           questions.map((e) => (
+            !e.isAnswered  &&
             <Question key={e.id} {...e}>
               <div className="buttons-admin">
-                <button>
+                <button 
+                onClick={() => handleFocus(e.id,e.isHighlighted)}>
                   <svg
                     width="24"
                     height="24"
@@ -83,7 +125,7 @@ export function AdminRoom() {
                     />
                   </svg>
                 </button>
-                <button>
+                <button onClick={() => handleAnswredQuestion(e.id, e.isAnswered)}>
                   <svg
                     width="24"
                     height="24"

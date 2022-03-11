@@ -14,7 +14,7 @@ type questionProps = {
 
 export function Question(props: questionProps) {
   return (
-    <div className="question-div" {...props}>
+    <div className={`question-div ${props.isHighlighted ? "focus" : ""}`} {...props}>
       <p>{props.content}</p>
       <div className="question-img-div">
         <img src={props.author.avatar} alt="AVATAR" />

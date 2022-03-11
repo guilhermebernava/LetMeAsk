@@ -3,10 +3,11 @@ import { database } from "../services/firebase";
 import { QuestionType, FirebaseQuestions } from "../types/QuestionTypes";
 import { useAuth } from "./useAuth";
 
-export function useRoom(roomId: string) {
+export function useRoom(roomId: string, send:boolean) {
   const { user } = useAuth();
 
   const [questions, setQuestions] = useState<QuestionType[]>([]);
+  const [pergunta, setPergunta] = useState(0);
   const [title, setTitle] = useState("");
 
   useEffect(() => {
@@ -31,7 +32,7 @@ export function useRoom(roomId: string) {
           };
         }
       );
-
+      setPergunta(ArrayQuestions.filter( _ => _.isAnswered === false).length);
       setTitle(databaseRoom.Title);
       setQuestions(ArrayQuestions);
     });
@@ -39,7 +40,7 @@ export function useRoom(roomId: string) {
     return () => {
       roomRef.off('value');
     };
-  }, [roomId, user?.id]);
+  }, [roomId, user?.id, send]);
 
-  return { questions, title };
+  return { questions, title , pergunta};
 }
