@@ -34,6 +34,11 @@ const Home = () => {
       alert('ROOM DOES NOT EXIST!!!')
       return
     }
+
+    if(roomRef.val().endedAt){
+      alert('ROOM ALREADY ENDED!!')
+      return
+    }
     history.push(`/rooms/${roomCode}`);
   }
 

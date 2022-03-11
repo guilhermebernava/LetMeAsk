@@ -1,4 +1,4 @@
-import like from "../../assets/images/like.svg";
+import { ReactNode } from "react";
 import "./Question.css";
 
 type questionProps = {
@@ -9,19 +9,18 @@ type questionProps = {
   content: string;
   isAnswered: boolean;
   isHighlighted: boolean;
+  children: ReactNode;
 };
 
 export function Question(props: questionProps) {
   return (
-    <div className="question-div">
+    <div className="question-div" {...props}>
       <p>{props.content}</p>
       <div className="question-img-div">
         <img src={props.author.avatar} alt="AVATAR" />
         <span>{props.author.name}</span>
         <div>
-          <small>
-            10 <img src={like} alt="LIKES" />
-          </small>
+          {props.children}
         </div>
       </div>
     </div>

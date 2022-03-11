@@ -120,3 +120,39 @@ button:active {
   color: #737380;
   font: 400 14px "Poppins", sans-serif;
 }
+
+.buttons-admin{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttons-admin > button{
+  align-self: center;
+  width: 4vh;
+  border: none;
+  margin: 6%;
+}
+
+.button-room{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-room > button{
+  width: 10vh;
+  border: none;
+  margin: 6%;
+}
+
+.like-button > .liked {
+  color: #835afd;
+}
+.liked > svg path {
+  stroke: #835afd;
+}
+
+.button-room > span{
+  margin: 6%;
+}
