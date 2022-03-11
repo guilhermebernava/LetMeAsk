@@ -2,8 +2,7 @@
   <img src="src/assets/images/logo.svg" />
 </p>
 
-<h1 align="center" ><img src="src/assets/images/react.png" /> Projeto Qodeless Ask </h1>
-  
+<h1 align="center" ><img src="src/assets/images/react.png" /> Projeto Qodeless Ask </h1>  
 
 Esse é um projeto de estudo do framework REACT, utilizando a ideia de criar um site onde voce consiga criar perguntas para serem respondidas.
 
@@ -14,3 +13,6 @@ Esse é um projeto de estudo do framework REACT, utilizando a ideia de criar um 
 * CSS
 * HTML
 * TYPESCRIPT
+
+<h1 align="center">Link do Site</h1> 
+https://projeto-pg2z96s47-guilhermebernava.vercel.app/
