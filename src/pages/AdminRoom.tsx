@@ -16,7 +16,6 @@ export function AdminRoom() {
   const history = useHistory();
   const params = useParams<RoomParams>();
   const [send, setSend] = useState(false);
-
   const { questions, title, pergunta } = useRoom(params.id, send);
 
   //#region FUNCTIONS
