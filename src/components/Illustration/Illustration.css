@@ -1,0 +1,42 @@
+.Illustration {
+  display: flex;
+  flex: 7;
+  flex-direction: column;
+  background: #835afd;
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+  padding: 120px 80px;
+}
+
+.div {
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+
+}
+
+.Illustration strong {
+  margin-top: 10%;
+  font: 700 32px "Poppins", sans-serif;
+  line-height: 42px;
+  width: 100%;
+  align-self: center;
+}
+
+.Illustration p {
+  margin-top: 10%;
+  font-weight: 100;
+  font-size: 22px;
+  line-height: 32px;
+  color: #d4d3d3;
+  width: 100%;
+  align-self: center;
+}
+
+.Illustration img {
+  width: 200%;
+  height: 200%;
+  max-width: 320px;
+  align-self: flex-start;
+}
